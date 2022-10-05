@@ -3,6 +3,7 @@ package com.android.statebasiccomposecodelab
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -28,7 +29,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun WellnessScreen(modifier: Modifier = Modifier) {
-    StatefulWaterCounter()
+    Column {
+        StatefulWaterCounter()
+        WellnessTasksList(modifier = modifier)
+    }
 }
 
 @Preview(showBackground = true)
