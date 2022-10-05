@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun WellnessScreen(modifier: Modifier = Modifier) {
-    WaterCount()
+    StatefulWaterCounter()
 }
 
 @Preview(showBackground = true)
