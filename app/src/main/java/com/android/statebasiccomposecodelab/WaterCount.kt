@@ -12,11 +12,13 @@ import com.android.statebasiccomposecodelab.ui.theme.StateBasicComposeCodelabThe
 
 @Composable
 fun WaterCount(modifier: Modifier = Modifier) {
-
     var count by remember { mutableStateOf(0) }
 
     Column(modifier = modifier.padding(16.dp)) {
-        Text(text = "You've had $count glasses", )
+        if(count > 0) {
+            Text(text = "You've had $count glasses", )
+        }
+
         Button(onClick = { count++ }, Modifier.padding(8.dp) ) {
             Text(text = "Add one")
         }
