@@ -12,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.android.statebasiccomposecodelab.ui.theme.StateBasicComposeCodelabTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,11 +31,21 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun WellnessScreen(modifier: Modifier = Modifier) {
-    val list = remember { getWellnessTasks().toMutableStateList() }
+fun WellnessScreen(
+    modifier: Modifier = Modifier,
+    wellnessViewModel: WellnessViewModel = viewModel(),
+) {
+    val list = remember { wellnessViewModel.tasks }
     Column {
         StatefulWaterCounter()
-        WellnessTasksList(list, modifier = modifier, onCloseTask = { task -> list.remove(task)})
+        WellnessTasksList(
+            list, modifier =
+            modifier,
+            onCloseTask = { wellnessViewModel.remove(it) },
+            onStateChange = { task, state ->
+                wellnessViewModel.changeTaskState(task, state)
+            }
+        )
     }
 }
 

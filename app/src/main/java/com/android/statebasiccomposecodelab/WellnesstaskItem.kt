@@ -9,24 +9,11 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.android.statebasiccomposecodelab.ui.theme.StateBasicComposeCodelabTheme
-
-@Composable
-fun WellnessTaskItem(taskName: String, modifier: Modifier, onClose: () -> Unit) {
-    var checkedState by rememberSaveable { mutableStateOf(false) }
-    WellnessTaskItem(
-        taskName = taskName,
-        onClose =  onClose,
-        checked = checkedState,
-        onCheckedChange = { checked -> checkedState = checked },
-        modifier = modifier
-    )
-}
 
 @Composable
 fun WellnessTaskItem(
@@ -57,6 +44,6 @@ fun WellnessTaskItem(
 @Composable
 fun WellnessTaskItemPreview() {
     StateBasicComposeCodelabTheme {
-        WellnessTaskItem(taskName = "Task 1", modifier = Modifier, onClose = {})
+        WellnessTaskItem(taskName = "Task 1", modifier = Modifier, onClose = {}, checked = true, onCheckedChange = {})
     }
 }
